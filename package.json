@@ -20,8 +20,13 @@
     },
     "homepage": "https://github.com/saujanyanagpal104/GameEx#readme",
     "dependencies": {
+        "passport": "^0.4.1",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
+        "react-redux": "^7.2.0",
+        "react-router-dom": "^5.1.2",
+        "redux": "^4.0.5",
+        "redux-thunk": "^2.3.0",
         "webpack": "^4.42.1",
         "webpack-cli": "^3.3.11"
     },
