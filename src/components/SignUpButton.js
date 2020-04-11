@@ -1,5 +1,5 @@
-import React from 'react'
+import React from 'react';
 
-const SignUpButton = () => <h1>SignUp</h1>
+const SignUpButton = () => <h1>SignUp</h1>;
 
-export default SignUpButton
+export default SignUpButton;
