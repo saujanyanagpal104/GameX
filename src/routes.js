@@ -1,7 +1,7 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import LandingPage from './views/LandingPage'
-import Dashboard from './views/Dashboard'
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import LandingPage from './views/LandingPage';
+import Dashboard from './views/Dashboard';
 
 const Routes = () => (
     <Router>
@@ -14,6 +14,6 @@ const Routes = () => (
             </Route>
         </Switch>
     </Router>
-)
+);
 
-export default Routes
+export default Routes;

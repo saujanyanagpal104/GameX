@@ -1,7 +1,7 @@
-import React from 'react'
-import LoginButton from '../components/LoginButton'
-import SignUpButton from '../components/SignUpButton'
-import AboutApp from '../components/AboutApp'
+import React from 'react';
+import LoginButton from '../components/LoginButton';
+import SignUpButton from '../components/SignUpButton';
+import AboutApp from '../components/AboutApp';
 
 const LandingPage = () => (
     <div className="wrapper">
@@ -9,6 +9,6 @@ const LandingPage = () => (
         <LoginButton />
         <SignUpButton />
     </div>
-)
+);
 
-export default LandingPage
+export default LandingPage;
