@@ -1,5 +1,5 @@
 @mixin buttonHoverAnimation {
     transition: 300ms;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.3);
     transform: scale(1.02);
 }
