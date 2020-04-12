@@ -1,6 +1,6 @@
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const path = require('path')
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
     entry: './src/index.js',
@@ -34,6 +34,12 @@ module.exports = {
                     loader: 'html-loader',
                 },
             },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: {
+                    loader: 'file-loader',
+                },
+            },
         ],
     },
     optimization: {
@@ -54,4 +60,4 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin(),
     ],
-}
+};

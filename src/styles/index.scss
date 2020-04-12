@@ -6,3 +6,14 @@
         font-size: 1.6rem;
     }
 }
+
+@import './landing-page.scss';
+@import './about-app.scss';
+@import './SignUpButton.scss';
+@import './LoginWithGoogleButton.scss';
+@import './LoginButton.scss';
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+}

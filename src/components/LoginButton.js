@@ -1,5 +1,9 @@
 import React from 'react';
 
-const LoginButton = () => <h1>Login</h1>;
+const LoginButton = () => (
+    <div className="email-login-button">
+        <span className="email-login-button-text">Login</span>
+    </div>
+);
 
 export default LoginButton;
