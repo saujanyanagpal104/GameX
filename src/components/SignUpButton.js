@@ -1,12 +1,12 @@
 import React from 'react';
 
 const SignUpButton = (props) => {
-    const handleClick = () => {
-        props.handleState('true');
+    const handleForm = () => {
+        props.handleForm(!props.formState);
     };
 
     return (
-        <div className="email-signup-button" onClick={handleClick}>
+        <div className="email-signup-button" onClick={handleForm}>
             <span className="email-signup-button-text">SignUp</span>
         </div>
     );

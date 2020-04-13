@@ -1,12 +1,18 @@
 import React from 'react';
 import Modal from './Modal';
 
-const SignUpForm = () => {
+const SignUpForm = (props) => {
+    const closeForm = () => {
+        props.handleForm(!props.formState);
+    };
     return (
         <Modal>
             <div className="signup-form-overlay">
                 <div className="signup-form">
                     <h2>Register with us</h2>
+                    <div onClick={closeForm} className="close-button">
+                        CLOSE<span className="close-sign">(X)</span>
+                    </div>
                     <form>
                         <label>
                             Full Name:

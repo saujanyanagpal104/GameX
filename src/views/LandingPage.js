@@ -4,9 +4,11 @@ import SignUpButton from '../components/SignUpButton';
 import AboutApp from '../components/AboutApp';
 import LoginWithGoogleButton from '../components/LoginWithGoogleButton';
 import SignUpForm from '../components/SignUpForm';
+import LoginForm from '../components/LoginForm';
 
 const LandingPage = () => {
-    const [showModal, setModalState] = useState(false);
+    const [signUpModal, toggleSignUpModal] = useState(false);
+    const [loginModal, toggleLoginModal] = useState(false);
 
     return (
         <div className="wrapper">
@@ -15,10 +17,27 @@ const LandingPage = () => {
                     <AboutApp />
                 </div>
                 <div className="auth-buttons">
-                    <LoginButton />
-                    <SignUpButton handleState={setModalState} />
+                    <LoginButton
+                        formState={loginModal}
+                        handleForm={toggleLoginModal}
+                    />
+                    <SignUpButton
+                        formState={signUpModal}
+                        handleForm={toggleSignUpModal}
+                    />
                     <LoginWithGoogleButton />
-                    {showModal ? <SignUpForm /> : null}
+                    {signUpModal ? (
+                        <SignUpForm
+                            formState={signUpModal}
+                            handleForm={toggleSignUpModal}
+                        />
+                    ) : null}
+                    {loginModal ? (
+                        <LoginForm
+                            formState={loginModal}
+                            handleForm={toggleLoginModal}
+                        />
+                    ) : null}
                 </div>
             </div>
         </div>
