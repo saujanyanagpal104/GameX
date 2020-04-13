@@ -4,14 +4,25 @@
     body {
         margin: 0;
         font-size: 1.6rem;
+
+        #modal-root {
+            width: 100%;
+            height: 100%;
+
+            .modal {
+                position: absolute;
+                top: 0;
+            }
+        }
     }
 }
 
-@import './landing-page.scss';
-@import './about-app.scss';
+@import './LandingPage.scss';
+@import './AboutApp.scss';
 @import './SignUpButton.scss';
 @import './LoginWithGoogleButton.scss';
 @import './LoginButton.scss';
+@import './SignUpForm.scss';
 
 .wrapper {
     width: 100vw;

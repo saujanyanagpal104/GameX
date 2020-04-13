@@ -19,4 +19,8 @@
     &:hover {
         @include buttonHoverAnimation;
     }
+
+    &:active {
+        @include buttonActiveAnimation;
+    }
 }

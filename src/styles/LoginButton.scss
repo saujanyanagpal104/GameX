@@ -3,7 +3,7 @@
 
 .email-login-button {
     width: $AuthButtonWidth;
-    background-color: $loginSignUpButtonBackgroundColor;
+    background-color: $defaultButtonBackgroundColor;
     color: #fff;
     font-family: $defaultFont;
     text-align: center;
@@ -18,5 +18,9 @@
 
     &:hover {
         @include buttonHoverAnimation;
+    }
+
+    &:active {
+        @include buttonActiveAnimation;
     }
 }
