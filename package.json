@@ -1,24 +1,23 @@
 {
-    "name": "gameex",
+    "name": "gamex",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack-dev-server --mode=development --open",
         "build": "webpack --mode=production",
         "lint": "eslint"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/saujanyanagpal104/GameEx.git"
+        "url": "https://github.com/saujanyanagpal104/GameX.git"
     },
     "author": "Saujanya Nagpal",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/saujanyanagpal104/GameEx/issues"
+        "url": "https://github.com/saujanyanagpal104/GameX/issues"
     },
-    "homepage": "https://github.com/saujanyanagpal104/GameEx#readme",
+    "homepage": "https://github.com/saujanyanagpal104/GameX#readme",
     "dependencies": {
         "passport": "^0.4.1",
         "react": "^16.13.1",
