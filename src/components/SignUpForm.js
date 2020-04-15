@@ -9,7 +9,7 @@ const SignUpForm = (props) => {
         <Modal>
             <div className="signup-form-overlay">
                 <div className="signup-form">
-                    <h2>Register with us</h2>
+                    <h2>Register</h2>
                     <div onClick={closeForm} className="close-button">
                         CLOSE<span className="close-sign">(X)</span>
                     </div>
