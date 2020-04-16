@@ -3,6 +3,9 @@ const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 
 const userRoutes = require('./routes/users');
+const authRoutes = require('./routes/auth');
+const feedRoutes = require('./routes/feed');
+const gamesRoutes = require('./routes/games');
 
 // Connect to Database
 mongoose
@@ -19,6 +22,9 @@ const app = express();
 const port = process.env.PORT || 6000;
 
 app.use('/api', userRoutes);
+app.use('/api', authRoutes);
+app.use('/api', feedRoutes);
+app.use('/api', gamesRoutes);
 
 app.listen(port, (req, res) => {
     console.log(`Server is running at`, port);

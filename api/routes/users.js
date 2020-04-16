@@ -5,8 +5,8 @@ router.get('/users', (req, res) => {
     res.send('users');
 });
 
-router.post('/register', (req, res) => {
-    res.send('Registerd!!');
+router.get('/profile', (req, res) => {
+    res.send('Profile!!');
 });
 
 module.exports = router;
