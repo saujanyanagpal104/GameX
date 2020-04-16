@@ -24,19 +24,45 @@ router.post('/register', (req, res) => {
             const token = jwt.sign(
                 { id: user._id, email: user.email },
                 config.secret,
-                { expiresIn: 86400 }
+                { expiresIn: '30 days' }
             );
-            res.status(200).send({ auth: true, token: token });
+            res.cookie('access-token', token, {
+                expires: new Date(Date.now() + 30 * 24 * 3600000),
+                httpOnly: true,
+            });
+            res.status(200).send({ auth: true });
         }
     );
 });
 
 router.post('/login', (req, res) => {
-    res.send('Login!!');
+    User.findOne({ email: req.body.email }, (err, user) => {
+        if (err) res.status(500).send('Server Error!');
+        if (!user) res.status(400).send('User not found');
+
+        const passwordValid = bcrypt.compareSync(
+            req.body.password,
+            user.password
+        );
+        if (!passwordValid) {
+            res.status(401).send({ auth: false });
+        }
+
+        const token = jwt.sign(
+            { id: user._id, email: user.email },
+            config.secret,
+            { expiresIn: '30 days' }
+        );
+        res.cookie('access-token', token, {
+            expires: new Date(Date.now() + 30 * 24 * 3600000),
+            httpOnly: true,
+        });
+        res.status(200).send({ auth: true });
+    });
 });
 
 router.get('/logout', (req, res) => {
-    res.send('Logout!!');
+    res.send({ auth: false });
 });
 
 module.exports = router;

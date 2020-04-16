@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import LandingPage from './views/LandingPage';
-import Dashboard from './views/Dashboard';
+import Feed from './views/Feed';
 
 const Routes = () => (
     <Router>
         <Switch>
-            <Route path="/dashboard">
-                <Dashboard />
+            <Route path="/feed">
+                <Feed />
             </Route>
             <Route path="/">
                 <LandingPage />
