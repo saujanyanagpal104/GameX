@@ -25,6 +25,4 @@ const uploadFile = (file) => {
     });
 };
 
-uploadFile('God-of-War-hed-796x419.jpg');
-
-// module.exports = uploadFile;
+module.exports = uploadFile;
