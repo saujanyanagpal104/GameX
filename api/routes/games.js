@@ -4,12 +4,54 @@ const cookieParser = require('cookie-parser');
 const verifyToken = require('../middlewares/verifyToken');
 const bodyParser = require('body-parser');
 const Game = require('../models/Game');
+const multer = require('multer');
+const temp = multer({ dest: 'temp/' });
+const aws = require('aws-sdk');
+const fs = require('fs');
+
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/games', (req, res) => {
     res.send('games');
 });
 
-router.post('/addgame', verifyToken, (req, res) => {});
+router.post(
+    '/addgame',
+    [verifyToken, temp.single('game_poster')],
+    (req, res) => {
+        aws.config.setPromisesDependency();
+
+        const s3 = new aws.S3({
+            accessKeyId: process.env.AWS_ID,
+            secretAccessKey: process.env.AWS_SECRET,
+        });
+
+        const params = {
+            Bucket: process.env.BUCKET_NAME,
+            Body: fs.createReadStream(req.file.path),
+            Key: `gamex-${req.file.originalname}`,
+            ContentType: 'image/jpeg',
+        };
+
+        s3.upload(params, (err, data) => {
+            if (err) throw err;
+            const locationUrl = data.Location;
+            fs.unlinkSync(req.file.path);
+            Game.create(
+                {
+                    game_poster: locationUrl,
+                    game_name: req.body.game_name,
+                    game_desc: req.body.game_desc,
+                },
+                (err, game) => {
+                    if (err) return res.status(500).send('Game Error!!');
+                    res.status(200).send({ game });
+                }
+            );
+        });
+    }
+);
 
 router.put('/updategame', verifyToken, (req, res) => {
     res.send('Update Game');

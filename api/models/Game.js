@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const gameSchema = mongoose.Schema({
-    image: {
-        data: Buffer,
-        contentType: String,
+    game_poster: {
+        type: String,
+        required: true,
     },
     game_name: {
         type: String,
