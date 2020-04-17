@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const verifyToken = require('../middlewares/verifyToken');
 const bodyParser = require('body-parser');
 const Game = require('../models/Game');
+const User = require('../models/User');
 const multer = require('multer');
 const temp = multer({ dest: 'temp/' });
 const aws = require('aws-sdk');
@@ -46,6 +47,27 @@ router.post(
                 },
                 (err, game) => {
                     if (err) return res.status(500).send('Game Error!!');
+                    User.findByIdAndUpdate(
+                        req.userId,
+                        {
+                            $push: {
+                                games: {
+                                    _id: game._id,
+                                    game_name: game.game_name,
+                                },
+                            },
+                        },
+                        (err, user) => {
+                            if (err)
+                                return res
+                                    .status(500)
+                                    .send(
+                                        'There is a problem finding the user.'
+                                    );
+                            if (!user)
+                                return res.status(404).send('No user found.');
+                        }
+                    );
                     res.status(200).send({ game });
                 }
             );

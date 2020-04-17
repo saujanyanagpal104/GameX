@@ -11,7 +11,11 @@ const gamesRoutes = require('./routes/games');
 mongoose
     .connect(
         `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@ds061767.mlab.com:61767/gamex`,
-        { useNewUrlParser: true, useUnifiedTopology: true },
+        {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+        },
         () => {
             console.log('Database Connected!');
         }
