@@ -13,6 +13,10 @@ const gameSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    postedBy: {
+        type: Object,
+        default: {},
+    },
 });
 
 const Game = mongoose.model('Game', gameSchema);

@@ -14,13 +14,18 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/games', (req, res) => {
-    res.send('games');
+    Game.find({}, (err, games) => {
+        if (err) return res.status(500).send('Error!!');
+        res.send({ games: games });
+    });
 });
 
 router.post(
     '/addgame',
     [verifyToken, temp.single('game_poster')],
     (req, res) => {
+        const user = req.userId;
+        console.log(user, 'user');
         aws.config.setPromisesDependency();
 
         const s3 = new aws.S3({
@@ -44,6 +49,7 @@ router.post(
                     game_poster: locationUrl,
                     game_name: req.body.game_name,
                     game_desc: req.body.game_desc,
+                    postedBy: user,
                 },
                 (err, game) => {
                     if (err) return res.status(500).send('Game Error!!');
@@ -75,12 +81,11 @@ router.post(
     }
 );
 
-router.put('/updategame', verifyToken, (req, res) => {
-    res.send('Update Game');
-});
-
 router.delete('/deletegame', verifyToken, (req, res) => {
-    res.send('Delete game!!');
+    Game.findByIdAndDelete(req.query.id, (err) => {
+        if (err) return res.send('Error while deleting!!');
+        res.status(200).send('Deleted Successfully!!');
+    });
 });
 
 module.exports = router;
