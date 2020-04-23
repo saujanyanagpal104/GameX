@@ -1,0 +1,12 @@
+export const LOGIN = 'LOGIN';
+export const LOGGINGIN = 'ISLOGINGIN';
+export const LOGINSUCCESSFUL = 'LOGINSUCCESSFUL';
+export const LOGOUT = 'LOGOUT';
+export const SIGNUP = 'SIGNUP';
+export const SIGNINGUP = 'SIGNINGUP';
+export const SIGNUPSUCCESSFUL = 'SIGNUPSUCCESSFUL';
+export const ADDGAME = 'ADDGAME';
+export const ADDINGGAME = 'ADDINGGAME';
+export const GAMEADDED = 'GAMEADDED';
+export const TOGGLELOGINMODAL = 'TOGGLELOGINMODAL';
+export const TOGGLESIGNUPMODAL = 'TOGGLESIGNUPMODAL';

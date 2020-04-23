@@ -2,7 +2,7 @@ import React from 'react';
 
 const LoginButton = (props) => {
     const handleForm = () => {
-        props.handleForm(!props.formState);
+        props.handleForm(true);
     };
 
     return (

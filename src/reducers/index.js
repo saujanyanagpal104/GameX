@@ -1,1 +1,6 @@
-export const rootReducer = () => console.log('reducers')
+import { combineReducers } from 'redux';
+import { loginButtonReducer } from './loginButtonReducer';
+
+export const rootReducer = combineReducers({
+    isLoginModalOpen: loginButtonReducer,
+});

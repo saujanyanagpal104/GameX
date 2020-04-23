@@ -23,13 +23,16 @@ mongoose
     .catch((err) => console.log(err));
 
 const app = express();
-const port = process.env.PORT || 6000;
+const port = process.env.PORT || 4000;
 
+app.get('/', (req, res) => {
+    res.send('API Working!!');
+});
 app.use('/api', userRoutes);
 app.use('/api', authRoutes);
 app.use('/api', feedRoutes);
 app.use('/api', gamesRoutes);
 
-app.listen(port, (req, res) => {
+app.listen(port, () => {
     console.log(`Server is running at`, port);
 });

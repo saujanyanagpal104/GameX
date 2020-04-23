@@ -1,10 +1,20 @@
 import React from 'react';
 import Modal from './Modal';
+import { connect } from 'react-redux';
 
-const LoginForm = (props) => {
+const LoginForm = () => {
     const closeForm = () => {
-        props.handleForm(!props.formState);
+        // props.handleForm(!props.formState);
     };
+
+    const handleSubmit = () => {
+        console.log('LoggedIn');
+    };
+
+    const handleChange = (e) => {
+        console.log(e.target.value);
+    };
+
     return (
         <Modal>
             <div className="login-form-overlay">
@@ -13,14 +23,19 @@ const LoginForm = (props) => {
                     <div onClick={closeForm} className="close-button">
                         CLOSE<span className="close-sign">(X)</span>
                     </div>
-                    <form>
+                    <form
+                        method="POST"
+                        action="http://localhost:4000/api/login"
+                        onSubmit={handleSubmit}
+                    >
                         <label>
                             Email:
                             <input
                                 type="email"
                                 name="email"
                                 placeholder="Enter your email"
-                                value="value"
+                                value={'email'}
+                                onChange={handleChange}
                             />
                         </label>
                         <label>
@@ -29,7 +44,8 @@ const LoginForm = (props) => {
                                 type="password"
                                 name="password"
                                 placeholder="Create password"
-                                value="value"
+                                value={'password'}
+                                onChange={handleChange}
                             />
                         </label>
                         <button className="login-button">Login</button>
