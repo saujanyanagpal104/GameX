@@ -1,6 +1,6 @@
 import { TOGGLELOGINMODAL } from './constants';
 
-export const handleLoginForm = (openModal) => ({
+export const handleLoginForm = (boolValue) => ({
     type: TOGGLELOGINMODAL,
-    payload: openModal,
+    payload: boolValue,
 });

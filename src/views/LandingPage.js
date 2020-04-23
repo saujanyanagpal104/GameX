@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import SignUpButton from '../components/SignUpButton';
 import AboutApp from '../components/AboutApp';
 // import LoginWithGoogleButton from '../components/LoginWithGoogleButton';
-import SignUpForm from '../components/SignUpForm';
 import LoginFormMain from '../containers/LoginFormMain';
 import LoginButtonMain from '../containers/LoginButtonMain';
+import SignUpButtonMain from '../containers/SignUpButtonMain';
+import SignUpFormMain from '../containers/SignUpFormMain';
 
 const LandingPage = () => {
     const [signUpModal, toggleSignUpModal] = useState(false);
@@ -17,10 +17,8 @@ const LandingPage = () => {
                 </div>
                 <div className="auth-buttons">
                     <LoginButtonMain />
-                    {/* <SignUpButton /> */}
-                    {/* {signUpModal ? (
-                        <SignUpForm />
-                    ) : null} */}
+                    <SignUpButtonMain />
+                    <SignUpFormMain />
                     <LoginFormMain />
                 </div>
             </div>

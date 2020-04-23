@@ -1,10 +1,9 @@
 import React from 'react';
 import Modal from './Modal';
-import { connect } from 'react-redux';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
     const closeForm = () => {
-        // props.handleForm(!props.formState);
+        props.handleForm(false);
     };
 
     const handleSubmit = () => {

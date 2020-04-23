@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LoginButton from '../components/LoginButton';
-import { handleLoginForm } from '../actions/LoginActionCreators';
+import { handleLoginForm } from '../actions/loginActionCreators';
 
 const LoginButtonMain = (props) => {
-    console.log(props, 'mainn');
     return (
         <>
             <LoginButton
@@ -20,7 +19,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    handleForm: (openModal) => dispatch(handleLoginForm(openModal)),
+    handleForm: (boolVal) => dispatch(handleLoginForm(boolVal)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginButtonMain);
