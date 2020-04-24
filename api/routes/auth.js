@@ -10,6 +10,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.post('/register', (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
     const hashedPassword = bcrypt.hashSync(req.body.password, 8);
 
     User.create(
@@ -36,6 +37,7 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
     User.findOne({ email: req.body.email }, (err, user) => {
         if (err) res.status(500).send('Server Error!');
         if (!user) res.status(400).send('User not found');
@@ -62,6 +64,7 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
+    res.header('Access-Control-Allow-Origin', '*');
     res.send({ auth: false });
 });
 
