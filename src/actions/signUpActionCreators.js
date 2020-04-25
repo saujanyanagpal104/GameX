@@ -33,6 +33,6 @@ export const signUpUser = (formData) => {
                         'application/x-www-form-urlencoded;charset=UTF-8',
                 }
             )
-            .then((res) => dispatch(signUpSuccessful));
+            .then((res) => dispatch(signUpSuccessful(res.data)));
     };
 };

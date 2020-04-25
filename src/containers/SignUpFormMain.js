@@ -10,6 +10,7 @@ const SignUpFormMain = (props) => {
                 <SignUpForm
                     handleForm={props.handleForm}
                     handleSignUp={props.handleSignUp}
+                    register={props.register}
                 />
             ) : null}
         </>
@@ -18,6 +19,7 @@ const SignUpFormMain = (props) => {
 
 const mapStateToProps = (state) => ({
     isSignUpModalOpen: state.isSignUpModalOpen,
+    register: state.register,
 });
 
 const mapDispatchToProps = (dispatch) => ({

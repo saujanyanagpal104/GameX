@@ -1,7 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const SignUpForm = (props) => {
     const [formData, setFormData] = useState({ fields: {} });
+
+    console.log(props, 'propss');
+
+    useEffect(() => {
+        if (props.register.isAuthenticated) {
+            history.push('/feed');
+        }
+    }, [props.register.isAuthenticated]);
+
+    const history = useHistory();
 
     const closeForm = () => {
         props.handleForm(false);
