@@ -3,9 +3,6 @@ import { useHistory } from 'react-router-dom';
 
 const SignUpForm = (props) => {
     const [formData, setFormData] = useState({ fields: {} });
-
-    console.log(props, 'propss');
-
     useEffect(() => {
         if (props.register.isAuthenticated) {
             history.push('/feed');

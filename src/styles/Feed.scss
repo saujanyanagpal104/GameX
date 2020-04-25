@@ -1,0 +1,37 @@
+@import './variables.scss';
+
+.not-logged-in {
+    display: flex;
+    align-items: center;
+    padding: 5rem;
+    flex-direction: column;
+    text-align: center;
+
+    .not-logged-in-text {
+        font-size: $titleFontSize;
+        font-family: $titleFont;
+        color: $titleColor;
+        padding: 2rem;
+    }
+
+    .login-button {
+        width: $AuthButtonWidth;
+        background-color: $defaultButtonBackgroundColor;
+        color: #fff;
+        font-family: $defaultFont;
+        text-align: center;
+        padding: 1rem 3rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        margin: 2rem;
+        font-size: $defaultTextFontSize;
+
+        &:hover {
+            @include buttonHoverAnimation;
+        }
+
+        &:active {
+            @include buttonActiveAnimation;
+        }
+    }
+}
