@@ -10,6 +10,7 @@ const LoginFormMain = (props) => {
                 <LoginForm
                     handleForm={props.handleForm}
                     loginUser={props.loginUser}
+                    auth={props.auth}
                 />
             ) : null}
         </>
@@ -18,7 +19,7 @@ const LoginFormMain = (props) => {
 
 const mapStateToProps = (state) => ({
     isLoginModalOpen: state.isLoginModalOpen,
-    ...state,
+    auth: state.auth,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const LoginForm = (props) => {
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({ fields: {} });
 
     const closeForm = () => {
         props.handleForm(false);
@@ -33,7 +33,7 @@ const LoginForm = (props) => {
                             type="email"
                             name="email"
                             placeholder="Enter your email"
-                            value={formData.email}
+                            value={formData.fields.email}
                             onChange={handleChange}
                         />
                     </label>
@@ -43,7 +43,7 @@ const LoginForm = (props) => {
                             type="password"
                             name="password"
                             placeholder="Create password"
-                            value={formData.password}
+                            value={formData.fields.password}
                             onChange={handleChange}
                         />
                     </label>

@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const SignUpForm = (props) => {
+    const [formData, setFormData] = useState({ fields: {} });
+
     const closeForm = () => {
         props.handleForm(false);
     };
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.handleSignUp(formData);
+    };
+
     return (
         <div className="signup-form-overlay">
             <div className="signup-form">
@@ -18,7 +33,8 @@ const SignUpForm = (props) => {
                             type="text"
                             name="full_name"
                             placeholder="Enter your full name"
-                            value="value"
+                            value={formData.fields.full_name}
+                            onChange={handleChange}
                         />
                     </label>
                     <label>
@@ -27,16 +43,18 @@ const SignUpForm = (props) => {
                             type="email"
                             name="email"
                             placeholder="Enter your email"
-                            value="value"
+                            value={formData.fields.email}
+                            onChange={handleChange}
                         />
                     </label>
                     <label>
                         Mobile No.:
                         <input
                             type="text"
-                            name="number"
+                            name="mobile_number"
                             placeholder="Enter your Mobile Number"
-                            value="value"
+                            value={formData.fields.mobile_number}
+                            onChange={handleChange}
                         />
                     </label>
                     <label>
@@ -45,10 +63,13 @@ const SignUpForm = (props) => {
                             type="password"
                             name="password"
                             placeholder="Create password"
-                            value="value"
+                            value={formData.fields.password}
+                            onChange={handleChange}
                         />
                     </label>
-                    <button className="signup-button">SignUp</button>
+                    <button className="signup-button" onClick={handleSubmit}>
+                        SignUp
+                    </button>
                 </form>
             </div>
         </div>

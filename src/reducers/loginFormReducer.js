@@ -1,6 +1,9 @@
 import { LOGINFORMSUBMIT, LOGINSUCCESSFUL } from '../actions/constants';
 
-export const loginFormReducer = (state = {}, action) => {
+export const loginFormReducer = (
+    state = { isFetched: false, isAuthenticated: false },
+    action
+) => {
     switch (action.type) {
         case LOGINFORMSUBMIT:
             return {
@@ -9,7 +12,7 @@ export const loginFormReducer = (state = {}, action) => {
         case LOGINSUCCESSFUL:
             return {
                 isFetched: true,
-                data: action.payload,
+                isAuthenticated: action.payload.auth,
             };
         default:
             return state;

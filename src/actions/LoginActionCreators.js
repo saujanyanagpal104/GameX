@@ -13,15 +13,13 @@ export const handleLoginForm = (boolValue) => ({
 
 export const submitForm = () => ({
     type: LOGINFORMSUBMIT,
-    error: 'Error while submitting!',
+    status: 'Form Submitted!',
 });
 
-export const loginSuccessful = (json) => {
-    return {
-        type: LOGINSUCCESSFUL,
-        payload: json,
-    };
-};
+export const loginSuccessful = (json) => ({
+    type: LOGINSUCCESSFUL,
+    payload: json,
+});
 
 export const loginUser = (formData) => {
     return (dispatch) => {
