@@ -1,8 +1,16 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config');
+const cookieParser = require('cookie-parser');
+const express = require('express');
+const router = express.Router();
+
+router.use(cookieParser());
 
 const verifyToken = (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    console.log(req.cookies, 'cookies');
     const token = req.cookies['access-token'];
+    console.log('123123', token);
     if (!token)
         return res
             .status(403)
@@ -16,6 +24,7 @@ const verifyToken = (req, res, next) => {
             });
 
         req.userId = decoded.id;
+        console.log(req.userId, 'userrr123');
         next();
     });
 };

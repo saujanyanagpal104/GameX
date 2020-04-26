@@ -1,9 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Game from '../components/Game';
 
 const Feed = (props) => {
     if (props.loginAuth.isAuthenticated || props.registerAuth.isAuthenticated) {
-        return <h1>Feed</h1>;
+        return (
+            <div className="games">
+                <Game games={props.feed.games} />
+            </div>
+        );
     } else {
         return (
             <div className="not-logged-in">

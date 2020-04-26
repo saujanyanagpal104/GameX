@@ -30,6 +30,7 @@ router.post('/register', (req, res) => {
             res.cookie('access-token', token, {
                 expires: new Date(Date.now() + 30 * 24 * 3600000),
                 httpOnly: true,
+                secure: false,
             });
             res.status(200).send({ auth: true });
         }
@@ -58,6 +59,7 @@ router.post('/login', (req, res) => {
         res.cookie('access-token', token, {
             expires: new Date(Date.now() + 30 * 24 * 3600000),
             httpOnly: true,
+            secure: false,
         });
         res.status(200).send({ auth: true });
     });

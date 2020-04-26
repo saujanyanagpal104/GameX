@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Feed from '../views/Feed';
+import { fetchFeed } from '../actions/feedActionCreators';
 
-const FeedMain = (props) => (
-    <>
-        <Feed loginAuth={props.auth} registerAuth={props.register} />
-    </>
-);
+const FeedMain = (props) => {
+    useEffect(() => {
+        props.fetchFeed();
+    }, []);
+
+    return (
+        <>
+            <Feed
+                loginAuth={props.auth}
+                registerAuth={props.register}
+                feed={props.feed}
+            />
+        </>
+    );
+};
 
 const mapStateToProps = (state) => ({
     auth: state.auth,
     register: state.register,
+    feed: state.feed,
 });
 
-export default connect(mapStateToProps, null)(FeedMain);
+const mapDispatchToProps = (dispatch) => ({
+    fetchFeed: () => dispatch(fetchFeed()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FeedMain);
