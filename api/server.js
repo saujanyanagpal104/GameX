@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const userRoutes = require('./routes/users');
 const authRoutes = require('./routes/auth');
@@ -24,6 +25,8 @@ mongoose
 
 const app = express();
 const port = process.env.PORT || 4000;
+
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('API Working!!');

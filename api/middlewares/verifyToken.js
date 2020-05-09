@@ -7,7 +7,6 @@ const router = express.Router();
 router.use(cookieParser());
 
 const verifyToken = (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
     console.log(req.cookies, 'cookies');
     const token = req.cookies['access-token'];
     console.log('123123', token);

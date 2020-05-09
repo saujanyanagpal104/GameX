@@ -1,0 +1,27 @@
+@import './variables.scss';
+@import './mixins.scss';
+
+.add-game-button {
+    width: $AuthButtonWidth;
+    background-color: $titleColor;
+    color: #fff;
+    font-family: $defaultFont;
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin: 2rem;
+    font-size: $defaultTextFontSize;
+
+    .add-game-button-text {
+        text-transform: uppercase;
+    }
+
+    &:hover {
+        @include buttonHoverAnimation;
+    }
+
+    &:active {
+        @include buttonActiveAnimation;
+    }
+}

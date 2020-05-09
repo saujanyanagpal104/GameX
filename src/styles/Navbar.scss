@@ -1,0 +1,31 @@
+@import './variables.scss';
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 0.1rem solid #ffff;
+    box-shadow: 0 0.2rem 1rem 0 #ffffff;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    .logo {
+        h1 {
+            font-family: $titleFont;
+            color: $titleColor;
+            font-size: 3.2rem;
+            margin: 0;
+        }
+    }
+
+    .other-stuff {
+        display: flex;
+        align-items: center;
+    }
+
+    .current-user-name {
+        color: #ffffff;
+        font-family: $defaultFont;
+        font-size: $defaultTextFontSize;
+    }
+}

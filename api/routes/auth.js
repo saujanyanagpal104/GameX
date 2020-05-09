@@ -5,12 +5,13 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 const User = require('../models/User');
+const cookieParser = require('cookie-parser');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
+router.use(cookieParser());
 
 router.post('/register', (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
     const hashedPassword = bcrypt.hashSync(req.body.password, 8);
 
     User.create(
@@ -38,7 +39,6 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
     User.findOne({ email: req.body.email }, (err, user) => {
         if (err) res.status(500).send('Server Error!');
         if (!user) res.status(400).send('User not found');
@@ -57,16 +57,17 @@ router.post('/login', (req, res) => {
             { expiresIn: '30 days' }
         );
         res.cookie('access-token', token, {
+            domain: 'localhost',
             expires: new Date(Date.now() + 30 * 24 * 3600000),
             httpOnly: true,
             secure: false,
         });
+        console.log(req.cookies['access-token'], 'cookies', res.getHeaders());
         res.status(200).send({ auth: true });
     });
 });
 
 router.get('/logout', (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
     res.send({ auth: false });
 });
 

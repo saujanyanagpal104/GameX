@@ -1,9 +1,21 @@
 @import './variables.scss';
 
+.feed-container {
+    width: 100vw;
+    height: 100vh;
+    background-image: $feedBackgroundImage;
+
+    .games {
+        padding: 2rem;
+    }
+}
+
 .not-logged-in {
+    width: 100vw;
+    height: 100vh;
+    background-image: $feedBackgroundImage;
     display: flex;
     align-items: center;
-    padding: 5rem;
     flex-direction: column;
     text-align: center;
 

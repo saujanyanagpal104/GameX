@@ -3,12 +3,12 @@ const router = express.Router();
 const cookieParser = require('cookie-parser');
 const User = require('../models/User');
 const Game = require('../models/Game');
-// const verifyToken = require('../middlewares/verifyToken');
+const verifyToken = require('../middlewares/verifyToken');
 
 router.use(cookieParser());
 
 router.get('/feed', (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*');
+    console.log(req.cookies, 'cook');
     // To FIX
     // User.findById(req.userId, { password: 0 }, (err, user) => {
     //     if (err)
@@ -17,7 +17,7 @@ router.get('/feed', (req, res) => {
 
     Game.find({}, (err, games) => {
         if (err) return res.status(500).send('Error!!');
-        res.status(200).send({ games: games });
+        res.status(200).send({ auth: true, games: games });
     });
     // });
 });
