@@ -7,15 +7,13 @@ const router = express.Router();
 router.use(cookieParser());
 
 const verifyToken = (req, res, next) => {
-    console.log(req.cookies, 'cookies');
-    const token = req.cookies['access-token'];
-    console.log('123123', token);
+    const token = req.headers['authorization'];
     if (!token)
         return res
             .status(403)
             .send({ auth: false, message: 'No token provided.' });
 
-    jwt.verify(token, config.secret, (err, decoded) => {
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
         if (err)
             return res.status(500).send({
                 auth: false,
@@ -23,7 +21,6 @@ const verifyToken = (req, res, next) => {
             });
 
         req.userId = decoded.id;
-        console.log(req.userId, 'userrr123');
         next();
     });
 };

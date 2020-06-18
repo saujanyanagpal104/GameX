@@ -25,15 +25,11 @@ router.post('/register', (req, res) => {
             if (err) return res.status(500).send('Registration Error!');
             const token = jwt.sign(
                 { id: user._id, email: user.email },
-                config.secret,
-                { expiresIn: '30 days' }
+                process.env.SECRET,
+                { expiresIn: '30 min' }
             );
-            res.cookie('access-token', token, {
-                expires: new Date(Date.now() + 30 * 24 * 3600000),
-                httpOnly: true,
-                secure: false,
-            });
-            res.status(200).send({ auth: true });
+            res.set({ Authorization: `Bearer ${token}` });
+            res.status(200).send({ auth: true, token: token });
         }
     );
 });
@@ -53,17 +49,10 @@ router.post('/login', (req, res) => {
 
         const token = jwt.sign(
             { id: user._id, email: user.email },
-            config.secret,
+            process.env.SECRET,
             { expiresIn: '30 days' }
         );
-        res.cookie('access-token', token, {
-            domain: 'localhost',
-            expires: new Date(Date.now() + 30 * 24 * 3600000),
-            httpOnly: true,
-            secure: false,
-        });
-        console.log(req.cookies['access-token'], 'cookies', res.getHeaders());
-        res.status(200).send({ auth: true });
+        res.status(200).send({ auth: true, token: token });
     });
 });
 
