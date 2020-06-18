@@ -1,4 +1,8 @@
-import { SIGNUPFORMSUBMIT, SIGNUPSUCCESSFUL } from '../actions/constants';
+import {
+    SIGNUPFORMSUBMIT,
+    SIGNUPSUCCESSFUL,
+    LOGOUT,
+} from '../actions/constants';
 
 export const signUpFormReducer = (
     state = { isFetched: false, isAuthenticated: false },
@@ -12,6 +16,10 @@ export const signUpFormReducer = (
         case SIGNUPSUCCESSFUL:
             return {
                 isFetched: true,
+                isAuthenticated: action.payload,
+            };
+        case LOGOUT:
+            return {
                 isAuthenticated: action.payload.auth,
             };
         default:

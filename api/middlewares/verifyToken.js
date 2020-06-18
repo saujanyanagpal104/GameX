@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const config = require('../config');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const router = express.Router();

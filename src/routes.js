@@ -9,7 +9,7 @@ const Routes = () => (
             <Route path="/feed">
                 <FeedMain />
             </Route>
-            <Route path="/">
+            <Route path="/" exact>
                 <LandingPage />
             </Route>
         </Switch>

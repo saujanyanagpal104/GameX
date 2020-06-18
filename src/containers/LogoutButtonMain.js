@@ -1,25 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import LogoutButton from '../components/LogoutButton';
-import { handleLoginForm } from '../actions/loginActionCreators';
+import { logout } from '../actions/logoutActionCreators';
 
 const LogoutButtonMain = (props) => {
     return (
         <>
-            <LogoutButton
-                formState={props.isLoginModalOpen}
-                handleForm={props.handleForm}
-            />
+            <LogoutButton logout={props.handleLogout} />
         </>
     );
 };
 
-const mapStateToProps = (state) => ({
-    isLoginModalOpen: state.isLoginModalOpen,
-});
-
 const mapDispatchToProps = (dispatch) => ({
-    handleForm: (boolVal) => dispatch(handleLoginForm(boolVal)),
+    handleLogout: () => dispatch(logout()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogoutButtonMain);
+export default connect(null, mapDispatchToProps)(LogoutButtonMain);

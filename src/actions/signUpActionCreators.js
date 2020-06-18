@@ -16,10 +16,16 @@ export const submitForm = () => ({
     status: 'Form Submitted!',
 });
 
-export const signUpSuccessful = (json) => ({
-    type: SIGNUPSUCCESSFUL,
-    payload: json,
-});
+export const signUpSuccessful = (json) => {
+    let date = new Date();
+    date.setTime(date.getTime() + 60 * 60);
+    document.cookie = `token=${json.token}; expires=${date}`;
+    document.cookie = `auth=${json.auth}; expires=${date}`;
+    return {
+        type: SIGNUPSUCCESSFUL,
+        payload: json.auth,
+    };
+};
 
 export const signUpUser = (formData) => {
     return (dispatch) => {

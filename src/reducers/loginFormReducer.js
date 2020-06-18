@@ -1,4 +1,4 @@
-import { LOGINFORMSUBMIT, LOGINSUCCESSFUL } from '../actions/constants';
+import { LOGINFORMSUBMIT, LOGINSUCCESSFUL, LOGOUT } from '../actions/constants';
 
 export const loginFormReducer = (
     state = { isFetched: false, isAuthenticated: false },
@@ -12,6 +12,10 @@ export const loginFormReducer = (
         case LOGINSUCCESSFUL:
             return {
                 isFetched: true,
+                isAuthenticated: action.payload,
+            };
+        case LOGOUT:
+            return {
                 isAuthenticated: action.payload.auth,
             };
         default:
