@@ -1,10 +1,15 @@
 @import './variables.scss';
 
 .games-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
     .game-container {
         width: 30rem;
         border: 0.1rem solid #ebebeb;
         border-radius: 0.6rem;
+        margin: 1rem;
     }
 
     .game-image-container {

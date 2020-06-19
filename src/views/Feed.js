@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Game from '../components/Game';
-// import AddGameForm from '../components/AddGameForm';
+import AddGameFormMain from '../containers/AddGameFormMain';
 import Navbar from '../components/Navbar';
 
 const Feed = (props) => {
@@ -14,9 +14,9 @@ const Feed = (props) => {
             <div className="wrapper">
                 <div className="feed-container">
                     <Navbar user={props.currentUser} />
-                    {/* <div className='add-game-block'>
-                    <AddGame />
-                </div> */}
+                    <div className="add-game-block">
+                        <AddGameFormMain />
+                    </div>
                     <div className="games">
                         <Game games={props.feed.games} />
                     </div>

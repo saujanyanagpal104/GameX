@@ -1,8 +1,12 @@
 import React from 'react';
 
-const AddGameForm = () => {
+const AddGameForm = (props) => {
+    const handleForm = () => {
+        props.handleForm(true);
+    };
+
     return (
-        <div className="add-game-button">
+        <div className="add-game-button" onClick={handleForm}>
             <span className="add-game-button-text">Add Game</span>
         </div>
     );

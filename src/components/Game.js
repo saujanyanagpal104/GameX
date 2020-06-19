@@ -2,7 +2,6 @@ import React from 'react';
 import { imageUrl } from '../helpers/imageUrl';
 
 const Game = ({ games }) => {
-    console.log(games, 'props');
     return (
         <div className="games-container">
             {games &&

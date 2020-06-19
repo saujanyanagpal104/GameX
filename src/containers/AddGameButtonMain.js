@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AddGameButton from '../components/AddGameButton';
-import { handleLoginForm } from '../actions/loginActionCreators';
+import { handleAddGameForm } from '../actions/addGameActionCreators';
 
 const AddGameButtonMain = (props) => {
     return (
         <>
             <AddGameButton
-                formState={props.isLoginModalOpen}
+                formState={props.isAddGameModalOpen}
                 handleForm={props.handleForm}
             />
         </>
@@ -15,11 +15,11 @@ const AddGameButtonMain = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-    isLoginModalOpen: state.isLoginModalOpen,
+    isLoginModalOpen: state.isAddGameModalOpen,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    handleForm: (boolVal) => dispatch(handleLoginForm(boolVal)),
+    handleForm: (boolVal) => dispatch(handleAddGameForm(boolVal)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddGameButtonMain);
