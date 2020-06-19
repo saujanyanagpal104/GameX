@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { handleAddGameForm, addGame } from '../actions/addGameActionCreators';
+import {
+    handleAddGameForm,
+    addGameImage,
+    addGameInfo,
+} from '../actions/addGameActionCreators';
 import AddGameForm from '../components/AddGameForm.js';
 
 const AddGameFormMain = (props) => {
@@ -22,7 +26,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     handleForm: (boolValue) => dispatch(handleAddGameForm(boolValue)),
-    addGame: (formData) => dispatch(addGame(formData)),
+    addGame: (imageFile, formData) =>
+        dispatch(addGameImage(imageFile, formData)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddGameFormMain);

@@ -22,11 +22,15 @@ export const gameAddedSuccessfully = (message) => ({
     payload: message,
 });
 
-export const addGame = (formData) => {
+export const addGameImage = (imageFile, formData) => {
+    const data = new FormData();
+    data.append('game_poster', imageFile);
+    data.append('game_name', formData.game_name);
+    data.append('game_desc', formData.game_desc);
     return (dispatch) => {
         dispatch(submitGameForm);
         return axios
-            .post('http://localhost:4000/api/addgame', formData, {
+            .post('http://localhost:4000/api/addgame', data, {
                 headers: {
                     Authorization: getCookie('token'),
                     'Content-type':

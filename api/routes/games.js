@@ -25,6 +25,7 @@ router.post(
     [temp.single('game_poster'), verifyToken],
     (req, res) => {
         const user = req.userId;
+
         aws.config.setPromisesDependency();
 
         const s3 = new aws.S3({

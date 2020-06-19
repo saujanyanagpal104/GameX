@@ -19,6 +19,7 @@
     },
     "homepage": "https://github.com/saujanyanagpal104/GameX#readme",
     "dependencies": {
+        "@babel/runtime": "^7.10.3",
         "axios": "^0.19.2",
         "passport": "^0.4.1",
         "qs": "^6.9.3",
@@ -34,9 +35,11 @@
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
+        "@babel/plugin-transform-runtime": "^7.10.3",
         "@babel/preset-env": "^7.9.0",
         "@babel/preset-react": "^7.9.4",
         "babel-loader": "^8.1.0",
+        "babel-polyfill": "^6.26.0",
         "css-loader": "^3.5.1",
         "eslint": "^6.8.0",
         "eslint-config-airbnb": "^18.1.0",

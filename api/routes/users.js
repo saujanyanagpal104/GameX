@@ -13,7 +13,7 @@ router.get('/users', verifyToken, (req, res) => {
     });
 });
 
-router.get('/profile', verifyToken, (req, res) => {
+router.get('/getUser', verifyToken, (req, res) => {
     User.findById(req.userId, { password: 0 }, (err, user) => {
         if (err)
             return res.status(500).send('There is a problem finding the user.');

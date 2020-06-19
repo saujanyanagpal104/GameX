@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const AddGameForm = (props) => {
     const [formData, setFormData] = useState({});
+    const [game_poster, setGamePoster] = useState(null);
 
     const closeForm = () => {
         props.handleForm(false);
@@ -9,16 +10,16 @@ const AddGameForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData, 'testyyy');
-        props.addGame(formData);
+        props.addGame(game_poster, formData);
+        props.handleForm(false);
+    };
+
+    const addImage = (e) => {
+        e.preventDefault();
+        setGamePoster(e.target.files[0]);
     };
 
     const handleChange = (e) => {
-        let data = new FormData();
-        let image = e.target.files ? e.target.files[0] : null;
-        data.append('image', image);
-        console.log(data, 'datat');
-        setFormData(data);
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
@@ -43,7 +44,7 @@ const AddGameForm = (props) => {
                             type="file"
                             name="game_poster"
                             placeholder="Add Game Image"
-                            onChange={handleChange}
+                            onChange={addImage}
                         />
                     </label>
                     <label>
