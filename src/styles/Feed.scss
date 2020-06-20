@@ -5,6 +5,8 @@
     height: 100vh;
     background-image: $feedBackgroundImage;
     overflow: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
 
     .games {
         padding: 2rem;

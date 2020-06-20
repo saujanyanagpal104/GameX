@@ -29,3 +29,10 @@
         font-size: $defaultTextFontSize;
     }
 }
+
+@media (max-width: $mobileScreen) {
+    .navbar,
+    .other-stuff {
+        flex-direction: column;
+    }
+}

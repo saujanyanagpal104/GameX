@@ -84,3 +84,17 @@
         }
     }
 }
+
+@media (max-width: $mobileScreen) {
+    .form-window {
+        margin: 1rem;
+
+        label {
+            flex-direction: column;
+
+            input {
+                width: inherit;
+            }
+        }
+    }
+}

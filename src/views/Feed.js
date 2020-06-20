@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Game from '../components/Game';
+import GameMain from '../container/GameMain';
 import AddGameFormMain from '../containers/AddGameFormMain';
 import Navbar from '../components/Navbar';
 
@@ -18,7 +18,7 @@ const Feed = (props) => {
                         <AddGameFormMain />
                     </div>
                     <div className="games">
-                        <Game games={props.feed.games} />
+                        <GameMain games={props.feed.games} />
                     </div>
                 </div>
             </div>

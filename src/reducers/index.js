@@ -5,6 +5,7 @@ import { loginFormReducer } from '../reducers/loginFormReducer';
 import { signUpFormReducer } from '../reducers/signUpFormReducer';
 import { feedReducer } from '../reducers/feedReducer';
 import { addGameButtonReducer } from './addGameButtonReducer';
+import { findUserReducer } from './findUserReducer';
 
 export const rootReducer = combineReducers({
     isLoginModalOpen: loginButtonReducer,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
     register: signUpFormReducer,
     feed: feedReducer,
     isAddGameModalOpen: addGameButtonReducer,
+    user: findUserReducer,
 });
