@@ -8,6 +8,7 @@ const LoginForm = (props) => {
 
     useEffect(() => {
         if (props.auth.isAuthenticated) {
+            props.handleForm(false);
             history.push('/feed');
         }
     }, [props.auth.isAuthenticated]);
