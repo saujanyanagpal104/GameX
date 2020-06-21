@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const SignUpForm = (props) => {
-    const [formData, setFormData] = useState({ fields: {} });
+    const [formData, setFormData] = useState({});
+    const [validateForm, setValidation] = useState(false);
+    const [isRegistered, setRegistrationStatus] = useState(false);
+
     useEffect(() => {
         if (props.register.isAuthenticated) {
             history.push('/feed');
@@ -22,9 +25,19 @@ const SignUpForm = (props) => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        props.handleSignUp(formData);
+        const checkFields =
+            formData.full_name &&
+            formData.email &&
+            formData.mobile_number &&
+            formData.password;
+        if (checkFields) {
+            setValidation(false);
+            setRegistrationStatus(true);
+            await props.handleSignUp(formData);
+        }
+        setValidation(true);
     };
 
     return (
@@ -41,7 +54,7 @@ const SignUpForm = (props) => {
                             type="text"
                             name="full_name"
                             placeholder="Enter your full name"
-                            value={formData.fields.full_name}
+                            value={formData.full_name || ''}
                             onChange={handleChange}
                         />
                     </label>
@@ -51,7 +64,7 @@ const SignUpForm = (props) => {
                             type="email"
                             name="email"
                             placeholder="Enter your email"
-                            value={formData.fields.email}
+                            value={formData.email || ''}
                             onChange={handleChange}
                         />
                     </label>
@@ -61,7 +74,7 @@ const SignUpForm = (props) => {
                             type="text"
                             name="mobile_number"
                             placeholder="Enter your Mobile Number"
-                            value={formData.fields.mobile_number}
+                            value={formData.mobile_number || ''}
                             onChange={handleChange}
                         />
                     </label>
@@ -71,14 +84,19 @@ const SignUpForm = (props) => {
                             type="password"
                             name="password"
                             placeholder="Create password"
-                            value={formData.fields.password}
+                            value={formData.password || ''}
                             onChange={handleChange}
                         />
                     </label>
                     <button className="signup-button" onClick={handleSubmit}>
-                        SignUp
+                        {isRegistered ? 'Wait!! Signing Up...' : 'SignUp'}
                     </button>
                 </form>
+                {validateForm && (
+                    <span className="validation-error">
+                        Cannot leave any field empty!!
+                    </span>
+                )}
             </div>
         </div>
     );

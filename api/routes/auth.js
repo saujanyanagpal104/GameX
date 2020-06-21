@@ -21,37 +21,43 @@ router.post('/register', (req, res) => {
             password: hashedPassword,
         },
         (err, user) => {
-            if (err) return res.status(500).send('Registration Error!');
-            const token = jwt.sign(
-                { id: user._id, email: user.email },
-                process.env.SECRET,
-                { expiresIn: '30 min' }
-            );
-            res.set({ Authorization: `Bearer ${token}` });
-            res.status(200).send({ auth: true, token: token });
+            if (err)
+                return res.status(200).send({ message: 'Registration Error!' });
+            else {
+                const token = jwt.sign(
+                    { id: user._id, email: user.email },
+                    process.env.SECRET,
+                    { expiresIn: '2 days' }
+                );
+                res.set({ Authorization: `Bearer ${token}` });
+                res.status(200).send({ auth: true, token: token });
+            }
         }
     );
 });
 
 router.post('/login', (req, res) => {
     User.findOne({ email: req.body.email }, (err, user) => {
-        if (err) res.status(500).send('Server Error!');
-        if (!user) res.status(400).send('User not found');
-
-        const passwordValid = bcrypt.compareSync(
-            req.body.password,
-            user.password
-        );
-        if (!passwordValid) {
-            res.status(401).send({ auth: false });
+        if (err)
+            res.status(200).send({ auth: false, message: 'Server Error!' });
+        if (!user)
+            res.status(200).send({ auth: false, message: 'User not found!' });
+        else {
+            const passwordValid = bcrypt.compareSync(
+                req.body.password,
+                user.password
+            );
+            if (!passwordValid) {
+                res.status(200).send({ auth: false });
+            } else {
+                const token = jwt.sign(
+                    { id: user._id, email: user.email },
+                    process.env.SECRET,
+                    { expiresIn: '2 days' }
+                );
+                res.status(200).send({ auth: true, token: token });
+            }
         }
-
-        const token = jwt.sign(
-            { id: user._id, email: user.email },
-            process.env.SECRET,
-            { expiresIn: '30 days' }
-        );
-        res.status(200).send({ auth: true, token: token });
     });
 });
 

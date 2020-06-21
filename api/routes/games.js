@@ -26,57 +26,66 @@ router.post(
     (req, res) => {
         const user = req.userId;
 
-        aws.config.setPromisesDependency();
+        User.findById(user, { password: 0 }, (err, userPosted) => {
+            if (err)
+                return res
+                    .status(500)
+                    .send('There is a problem finding the user!');
 
-        const s3 = new aws.S3({
-            accessKeyId: process.env.AWS_ID,
-            secretAccessKey: process.env.AWS_SECRET,
-        });
+            aws.config.setPromisesDependency();
 
-        const params = {
-            Bucket: process.env.BUCKET_NAME,
-            Body: fs.createReadStream(req.file.path),
-            Key: `gamex-${req.file.originalname}`,
-            ContentType: 'image/jpeg',
-        };
+            const s3 = new aws.S3({
+                accessKeyId: process.env.AWS_ID,
+                secretAccessKey: process.env.AWS_SECRET,
+            });
 
-        s3.upload(params, (err, data) => {
-            if (err) throw err;
-            const locationUrl = data.Location;
-            fs.unlinkSync(req.file.path);
-            Game.create(
-                {
-                    game_poster: locationUrl,
-                    game_name: req.body.game_name,
-                    game_desc: req.body.game_desc,
-                    postedBy: user,
-                },
-                (err, game) => {
-                    if (err) return res.status(500).send('Game Error!!');
-                    User.findByIdAndUpdate(
-                        req.userId,
-                        {
-                            $push: {
-                                games: {
-                                    _id: game._id,
-                                    game_name: game.game_name,
+            const params = {
+                Bucket: process.env.BUCKET_NAME,
+                Body: fs.createReadStream(req.file.path),
+                Key: `gamex-${req.file.originalname}`,
+                ContentType: 'image/jpeg',
+            };
+
+            s3.upload(params, (err, data) => {
+                if (err) throw err;
+                const locationUrl = data.Location;
+                fs.unlinkSync(req.file.path);
+                Game.create(
+                    {
+                        game_poster: locationUrl,
+                        game_name: req.body.game_name,
+                        game_desc: req.body.game_desc,
+                        postedBy: userPosted,
+                    },
+                    (err, game) => {
+                        if (err) return res.status(500).send('Game Error!!');
+                        User.findByIdAndUpdate(
+                            req.userId,
+                            {
+                                $push: {
+                                    games: {
+                                        _id: game._id,
+                                        game_name: game.game_name,
+                                    },
                                 },
                             },
-                        },
-                        (err, user) => {
-                            if (err)
-                                return res
-                                    .status(500)
-                                    .send(
-                                        'There is a problem finding the user.'
-                                    );
-                            if (!user)
-                                return res.status(404).send('No user found.');
-                        }
-                    );
-                    res.status(200).send({ game });
-                }
-            );
+                            (err, user) => {
+                                if (err)
+                                    return res
+                                        .status(500)
+                                        .send(
+                                            'There is a problem finding the user.'
+                                        );
+                                if (!user)
+                                    return res
+                                        .status(404)
+                                        .send('No user found.');
+                            }
+                        );
+                        res.status(200).send({ game });
+                    }
+                );
+            });
         });
     }
 );

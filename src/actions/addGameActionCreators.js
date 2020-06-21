@@ -4,7 +4,6 @@ import {
     GAMESUCCESSFULLYADDED,
 } from './constants';
 import axios from 'axios';
-import qs from 'qs';
 import { getCookie } from '../helpers/getCookie';
 
 export const handleAddGameForm = (boolValue) => ({
@@ -22,7 +21,7 @@ export const gameAddedSuccessfully = (message) => ({
     payload: message,
 });
 
-export const addGameImage = (imageFile, formData) => {
+export const addGame = (imageFile, formData) => {
     const data = new FormData();
     data.append('game_poster', imageFile);
     data.append('game_name', formData.game_name);

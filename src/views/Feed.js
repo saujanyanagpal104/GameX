@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import GameMain from '../container/GameMain';
+import GameMain from '../containers/GameMain';
 import AddGameFormMain from '../containers/AddGameFormMain';
 import Navbar from '../components/Navbar';
 
@@ -8,7 +8,7 @@ const Feed = (props) => {
     if (
         props.loginAuth.isAuthenticated ||
         props.registerAuth.isAuthenticated ||
-        props.cookieAuth
+        props.cookieAuth == 'true'
     ) {
         return (
             <div className="wrapper">
@@ -18,7 +18,7 @@ const Feed = (props) => {
                         <AddGameFormMain />
                     </div>
                     <div className="games">
-                        <GameMain games={props.feed.games} />
+                        <GameMain />
                     </div>
                 </div>
             </div>

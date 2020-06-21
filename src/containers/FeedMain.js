@@ -15,7 +15,7 @@ const FeedMain = (props) => {
                 cookieAuth={getCookie('auth')}
                 loginAuth={props.auth}
                 registerAuth={props.register}
-                feed={props.feed}
+                feed={props.feed ? props.feed : null}
                 currentUser={props.currentUser}
             />
         </>

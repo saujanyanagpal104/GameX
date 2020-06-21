@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const LoginForm = (props) => {
-    const [formData, setFormData] = useState({ fields: {} });
+    const [formData, setFormData] = useState({});
+    const [validateForm, setValidation] = useState(false);
+    const [isLoggedIn, setLoggingIn] = useState(false);
 
     useEffect(() => {
         if (props.auth.isAuthenticated) {
@@ -16,9 +18,21 @@ const LoginForm = (props) => {
         props.handleForm(false);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        props.loginUser(formData);
+        if (formData.email && formData.password) {
+            setValidation(false);
+            setLoggingIn(true);
+            await props.loginUser(formData);
+            if (props.auth.isAuthenticated) {
+                props.handleForm(false);
+            } else {
+                setLoggingIn(false);
+                setValidation(true);
+            }
+        } else {
+            setValidation(true);
+        }
     };
 
     const handleChange = (e) => {
@@ -42,24 +56,30 @@ const LoginForm = (props) => {
                             type="email"
                             name="email"
                             placeholder="Enter your email"
-                            value={formData.fields.email}
+                            value={formData.email || ''}
                             onChange={handleChange}
                         />
                     </label>
+
                     <label>
                         Password:
                         <input
                             type="password"
                             name="password"
                             placeholder="Create password"
-                            value={formData.fields.password}
+                            value={formData.password || ''}
                             onChange={handleChange}
                         />
                     </label>
                     <button className="login-button" onClick={handleSubmit}>
-                        Login
+                        {isLoggedIn ? 'Wait! Logging In...' : 'Login'}
                     </button>
                 </form>
+                {validateForm && (
+                    <span className="validation-error">
+                        Invalid Email or Password!!
+                    </span>
+                )}
             </div>
         </div>
     );

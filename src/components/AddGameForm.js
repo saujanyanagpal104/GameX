@@ -3,15 +3,24 @@ import React, { useState, useEffect } from 'react';
 const AddGameForm = (props) => {
     const [formData, setFormData] = useState({});
     const [game_poster, setGamePoster] = useState(null);
+    const [validateForm, setValidation] = useState(false);
+    const [isLoaded, setLoaded] = useState(false);
 
     const closeForm = () => {
         props.handleForm(false);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        props.addGame(game_poster, formData);
-        props.handleForm(false);
+        if (formData.game_name && formData.game_desc && game_poster != null) {
+            setValidation(false);
+            setLoaded(true);
+            await props.addGame(game_poster, formData);
+            await props.fetchFeed();
+            props.handleForm(false);
+        } else {
+            setValidation(true);
+        }
     };
 
     const addImage = (e) => {
@@ -47,29 +56,39 @@ const AddGameForm = (props) => {
                             onChange={addImage}
                         />
                     </label>
+
                     <label>
                         Game Name:
                         <input
                             type="text"
                             name="game_name"
                             placeholder="Enter Game Name"
-                            value={formData.game_name}
+                            value={formData.game_name || ''}
                             onChange={handleChange}
                         />
                     </label>
+
                     <label>
                         Game Description:
                         <textarea
                             name="game_desc"
                             placeholder="Enter Game Description"
-                            value={formData.game_desc}
+                            value={formData.game_desc || ''}
                             onChange={handleChange}
                         />
                     </label>
+
                     <button className="add-game-button" onClick={handleSubmit}>
-                        <span className="add-game-button-text">Add Game</span>
+                        <span className="add-game-button-text">
+                            {isLoaded ? 'Wait!! Adding...' : 'Add Game'}
+                        </span>
                     </button>
                 </form>
+                {validateForm && (
+                    <span className="validation-error">
+                        Cannot leave any field empty!!
+                    </span>
+                )}
             </div>
         </div>
     );

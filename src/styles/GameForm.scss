@@ -1,4 +1,5 @@
 @import './variables.scss';
+@import './mixins.scss';
 
 .add-game-form-container {
     position: fixed;
@@ -14,6 +15,17 @@
         background-color: white;
         border-radius: 1rem;
         position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .validation-error {
+            font-family: $defaultFont;
+            position: absolute;
+            bottom: 1rem;
+            font-size: 1.5rem;
+            color: red;
+        }
 
         h2 {
             font-family: $defaultFont;
@@ -86,8 +98,9 @@
 }
 
 @media (max-width: $mobileScreen) {
-    .form-window {
+    .add-game-form-container .form-window {
         margin: 1rem;
+        padding: 4rem;
 
         label {
             flex-direction: column;
