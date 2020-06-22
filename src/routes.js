@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import LandingPage from './views/LandingPage';
+import LandingPageMain from './containers/LandingPageMain';
 import FeedMain from './containers/FeedMain';
 
 const Routes = () => (
@@ -10,7 +10,7 @@ const Routes = () => (
                 <FeedMain />
             </Route>
             <Route path="/" exact>
-                <LandingPage />
+                <LandingPageMain />
             </Route>
         </Switch>
     </Router>
