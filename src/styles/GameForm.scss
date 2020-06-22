@@ -68,6 +68,8 @@
                     margin-left: 3rem;
                     font-size: $defaultTextFontSize;
                     color: $defaultFontColor;
+                    min-width: 60%;
+                    max-width: 60%;
                 }
             }
 
@@ -102,11 +104,17 @@
         margin: 1rem;
         padding: 4rem;
 
-        label {
-            flex-direction: column;
+        form {
+            label {
+                flex-direction: column;
 
-            input {
-                width: inherit;
+                input,
+                textarea {
+                    width: inherit;
+                    margin-left: 0;
+                    min-width: 100%;
+                    max-width: 100%;
+                }
             }
         }
     }
