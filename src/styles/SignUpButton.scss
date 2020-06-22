@@ -13,10 +13,6 @@
     margin: 2rem;
     font-size: $defaultTextFontSize;
 
-    .email-signup-button-text {
-        text-transform: uppercase;
-    }
-
     &:hover {
         @include buttonHoverAnimation;
     }

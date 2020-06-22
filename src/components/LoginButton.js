@@ -7,7 +7,7 @@ const LoginButton = (props) => {
 
     return (
         <div className="email-login-button" onClick={handleForm}>
-            <span className="email-login-button-text">Login</span>
+            <span className="email-login-button-text">LOGIN</span>
         </div>
     );
 };

@@ -7,7 +7,7 @@ const SignUpButton = (props) => {
 
     return (
         <div className="email-signup-button" onClick={handleForm}>
-            <span className="email-signup-button-text">SignUp</span>
+            <span className="email-signup-button-text">SIGNUP</span>
         </div>
     );
 };

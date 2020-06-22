@@ -1,14 +1,19 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: {
         index: './src/index.js',
+        feed: './src/containers/FeedMain.js',
+        landingpage: './src/containers/LandingPageMain.js',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: '[name].bundle.js',
+        filename: '[name].[hash].js',
         publicPath: '/',
     },
     module: {
@@ -45,10 +50,22 @@ module.exports = {
         ],
     },
     optimization: {
+        moduleIds: 'hashed',
+        minimizer: [
+            new UglifyJsPlugin({
+                test: /\.js(\?.*)?$/i,
+            }),
+        ],
         usedExports: true,
         runtimeChunk: 'single',
         splitChunks: {
-            chunks: 'all',
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                },
+            },
         },
     },
     devtool: 'inline-source-map',
@@ -65,6 +82,9 @@ module.exports = {
             filename: './index.html',
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.HashedModuleIdsPlugin(),
+        new CompressionPlugin({
+            test: /\.js(\?.*)?$/i,
+        }),
+        new CleanWebpackPlugin(),
     ],
 };
